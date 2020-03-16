@@ -124,7 +124,7 @@ function buildShip(obj){
             <input name="username" type="text">
             <br>
             <label for="password">Password:</label>
-            <input name=password" type="text">
+            <input name=password" type="password">
             <br>`
              return check
             
@@ -173,7 +173,7 @@ function buildShip(obj){
     
     }
     let user = null
-    function createUser(){
+    function postUser(){
        let  config = {method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -188,11 +188,12 @@ function buildShip(obj){
        fetch(users,config).then(res => res.json()).then(obj =>
         {
             debugger
+
         currentUser = obj.data.attributes });
     }
     function postTrip(user){
 debugger
-let  userObj= user.data
+        currentUser = user.data
         let config = {
             method: 'POST',
             headers: {
@@ -200,7 +201,7 @@ let  userObj= user.data
                 Accept: "application/json"
               },
               body: JSON.stringify({
-                  "user_id": userObj.id,
+                  "user_id": currentUser.id,
                   "price": price,
                   "ship_id": choice2.id,
                   "location_id":choice1.id    
@@ -220,7 +221,7 @@ let  userObj= user.data
         divHead.innerHTML = `<h1>Thank you, have fun</h1>`
         debugger
        let  html = `<div name="purchase">
-            <h2> Have fun $ at ${location.name}, ${userObj.name}</h2>
+            <h2> Have fun ${userObj.name} at ${location.name} </h2>
             <br>
             <h3> Remember the name of your ship is ${ship.name}<h3>
             <h3>Cost: $${price}</h3>

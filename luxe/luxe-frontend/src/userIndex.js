@@ -124,8 +124,7 @@ function createUser(){
 function renderUser(obj){
     joinBtn.remove()
     main.innerHTML = ``
-    // previousDiv = document.querySelector("div.LogIn")
-    // previousDiv.remove()
+
     divHead.innerHTML = `<h1>Home Page</h1>`
      let userData =  obj.data.attributes
      currentUser = userData
@@ -147,7 +146,6 @@ function renderUser(obj){
     main.appendChild(homeDiv)
 }
 function userTrips(){
-    // let fetchTrips = fetchUserTrips(    )
     debugger
     let ul = document.createElement("ul")
     if(currentUser.trips){
@@ -161,11 +159,3 @@ function userTrips(){
         return `<p>Book a trip<p>`
     }
 }
-// async function fetchUserTrips(){
-//    const res = await fetch(trips)
-//     const obj = await res.json()
-//     return fetchTripUser(obj)
-// }
-// function fetchTripUser(obj){
-//     debugger
-// }

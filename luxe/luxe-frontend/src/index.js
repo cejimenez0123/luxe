@@ -42,6 +42,7 @@ joinBtn.addEventListener("click",function(){
 // builds form holding cards of locations that can be chosen from
 
 function buildLocation(obj){ 
+    
    let div = document.createElement("div")
         div.className = "locations"
         divHead.innerHTML = `<h1>Locations to Visit</h1>` 
@@ -54,6 +55,8 @@ function buildLocation(obj){
         
         // form.setAttribute("method","post")
     for(const location of obj){
+
+     new Location (location.attributes.name,location.attributes.price)
      let html  = htmlLocation(location.attributes)
         form.innerHTML += html
     }
@@ -63,7 +66,7 @@ function buildLocation(obj){
         e.preventDefault()
         inputs.forEach(i => {
             if(i.checked == true){
-                choice1 = i    
+                choice1 = new Location(i.id,i.value,i.dataset["price"])
             }
         })
         div.remove()
@@ -72,6 +75,7 @@ function buildLocation(obj){
     div.appendChild(form)
     main.appendChild(div)
     }
+    let locationObj = null
 function htmlLocation(location){
         location = `
         <div class="location">
@@ -91,6 +95,7 @@ function buildShip(obj){
         form.setAttribute("method","post")
         div.appendChild(form)
     for(const ship of obj){
+       
          form.innerHTML += htmlShip(ship.attributes)
         }
     let submitBtn = document.createElement("input")
@@ -104,7 +109,8 @@ function buildShip(obj){
         let inputs = e.target.querySelectorAll('input')
         inputs.forEach(i => {
             if ( i.checked == true){
-                choice2 = i
+                debugger
+              choice2  = new Ship(i.id,i.value,i.dataset["price"])
                 div.remove()
                 nameForm()
             }})
@@ -132,7 +138,7 @@ function buildShip(obj){
     }
     function nameForm(){
       
-        price = (parseInt(choice1.dataset["price"]))+(parseInt(choice2.dataset["price"]))
+        price = (parseInt(choice1.price))+(parseInt(choice2.price))
         divHead.innerHTML=`<h2>Final Form<h2>
                             <br><h4>Input Name,Check Price<h4>`
         let form = document.createElement("form")
@@ -141,8 +147,8 @@ function buildShip(obj){
                                 <form action="trips" method="post">
                                 ${ checkCurrentUser()}
                                 <label for="price">Price of Trip:</label>
-                                <h2 name="price">location:${choice1.dataset["price"]} + ship:
-                                 ${choice2.dataset["price"]}= $ ${price}</h2>
+                                <h2 name="price">location:${choice1.price} + ship:
+                                 ${choice2.price}= $ ${price}</h2>
                                 <input type="submit">
                                 </form>`
         
@@ -172,28 +178,11 @@ function buildShip(obj){
         // main.appendChild(form)
     
     }
+    let object = null
     let user = null
-    function postUser(){
-       let  config = {method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: "application/json"
-        },
-        body: JSON.stringify({
-            "name": nameInput,
-            "username": username,
-            "password": password
-        })
-        };
-       fetch(users,config).then(res => res.json()).then(obj =>
-        {
-            debugger
-
-        currentUser = obj.data.attributes });
-    }
     function postTrip(user){
-debugger
-        currentUser = user.data
+        debugger
+        currentUser = user
         let config = {
             method: 'POST',
             headers: {
@@ -201,23 +190,28 @@ debugger
                 Accept: "application/json"
               },
               body: JSON.stringify({
-                  "user_id": currentUser.id,
+                  "user_id": user.id,
                   "price": price,
                   "ship_id": choice2.id,
                   "location_id":choice1.id    
               })
         }
         fetch('http://localhost:3000/trips',config).then(res => res.json())
-        .then(obj =>  htmlTrip(obj))
-
+        .then(obj =>  {
+            debugger
+            currentTrip = new Trip (obj.data.attributes.id, obj.data.attributes.user, obj.data.attributes.ship,obj.data.attributes.location, obj.data.attributes.price)
+            htmlTrip(currentTrip)}
+        )
     }
-
+    let currentTrip = null
 
     function htmlTrip(obj){
         debugger
-        let userObj = obj.data.attributes.user
-        let ship = obj.data.attributes.ship
-        let location = obj.data.attributes.location
+
+        
+        let userObj = currrentTrip.user
+        let ship =currentTrip.ship
+        let location = currentTrip.location
         divHead.innerHTML = `<h1>Thank you, have fun</h1>`
         debugger
        let  html = `<div name="purchase">
@@ -239,26 +233,30 @@ debugger
             </div>`
     return html
     }
-class User{constructor(name1,username1,password1){
+class User{constructor(id,name1,username1,password1){
+    this.id = id
     this.name = name1
     this.username = username1
     this.password = password1
 }}
 
 class Ship { 
-    constructor(name,price){
+    constructor(id,name,price){
+        this.id = id
         this.price = price
         this.name = name
     }
 }
 class Location {
-    constructor(name,price){
+    constructor(id,name,price){
+        this.id = id
         this.name = name
         this.price = price
     }
 }
 class Trip{
-    constructor(user,ship,location,price){
+    constructor(id,user,ship,location,price){
+        this.id = id
         this.user = user
         this.ship = ship
         this.price = price

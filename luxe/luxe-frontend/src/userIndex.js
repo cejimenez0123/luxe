@@ -100,7 +100,7 @@ function checkCurrentUser(){
         <input name="username" type="text">
         <br>
         <label for="password">Password:</label>
-        <input name=password" type="text">
+        <input name=password" type="password">
         <br>`
     }
 } 
@@ -117,17 +117,18 @@ function createUser(){
         "password": password
     })
     };
-   fetch(users,config).then(res => res.json()).then(obj =>
-    postTrip(obj) );
+   fetch(users,config).then(res => res.json()).then(obj =>{
+    debugger
+    user = new User(obj.data.attributes.id,obj.data.attributes.name,obj.data.attributes.username,obj.data.attributes.password)
+    postTrip(user) });
     
 }
 function renderUser(obj){
     joinBtn.remove()
     main.innerHTML = ``
 
-    divHead.innerHTML = `<h1>Home Page</h1>`
-     let userData =  obj.data.attributes
-     currentUser = userData
+    divHead.innerHTML = `<h1>Home Page</h1>` 
+     currentUser = obj.data.attributes
     let homeDiv = document.createElement("div")
     trips = userTrips(user)
     homeDiv.innerHTML = `<h2>Welcome ${currentUser.name}</h2>

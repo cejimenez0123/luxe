@@ -1,0 +1,52 @@
+2020-03-09 11:12:07.514 EDT [20748] LOG:  starting PostgreSQL 12.2 on x86_64-apple-darwin19.3.0, compiled by Apple clang version 11.0.0 (clang-1100.0.33.17), 64-bit
+2020-03-09 11:12:07.515 EDT [20748] LOG:  listening on IPv6 address "::1", port 5432
+2020-03-09 11:12:07.515 EDT [20748] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-03-09 11:12:07.516 EDT [20748] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-03-09 11:12:07.527 EDT [20749] LOG:  database system was shut down at 2020-03-09 11:11:58 EDT
+2020-03-09 11:12:07.530 EDT [20748] LOG:  database system is ready to accept connections
+2020-03-09 11:13:06.930 EDT [20898] ERROR:  syntax error at or near "-" at character 17
+2020-03-09 11:13:06.930 EDT [20898] STATEMENT:  CREATE ROLE luxe-backend WITH LOGIN PASSWORD 'macbook20';
+2020-03-09 11:14:02.662 EDT [20916] FATAL:  role "luxe_backend" does not exist
+2020-03-09 11:18:03.313 EDT [21243] FATAL:  could not open file "global/pg_filenode.map": No such file or directory
+2020-03-09 11:18:07.562 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:08.256 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:08.256 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:08.938 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:08.938 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:09.630 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:09.630 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:10.319 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:10.319 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:10.999 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:11.000 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:11.692 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:11.692 EDT [20754] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2020-03-09 11:18:12.278 EDT [20748] LOG:  could not open file "postmaster.pid": No such file or directory
+2020-03-09 11:18:12.278 EDT [20748] LOG:  performing immediate shutdown because data directory lock file is invalid
+2020-03-09 11:18:12.278 EDT [20748] LOG:  received immediate shutdown request
+2020-03-09 11:18:12.278 EDT [20748] LOG:  could not open file "postmaster.pid": No such file or directory
+2020-03-09 11:18:12.278 EDT [20754] LOG:  could not open temporary statistics file "pg_stat/global.tmp": No such file or directory
+2020-03-09 11:18:12.278 EDT [20753] WARNING:  terminating connection because of crash of another server process
+2020-03-09 11:18:12.278 EDT [20753] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2020-03-09 11:18:12.278 EDT [20753] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2020-03-09 11:18:12.282 EDT [20748] LOG:  database system is shut down
+2020-03-09 11:18:42.134 EDT [21260] FATAL:  lock file "postmaster.pid" already exists
+2020-03-09 11:18:42.134 EDT [21260] HINT:  Is another postmaster (PID 21248) running in data directory "/usr/local/var/postgres"?
+2020-03-09 12:17:41.152 EDT [22782] LOG:  starting PostgreSQL 12.2 on x86_64-apple-darwin19.3.0, compiled by Apple clang version 11.0.0 (clang-1100.0.33.17), 64-bit
+2020-03-09 12:17:41.154 EDT [22782] LOG:  listening on IPv6 address "::1", port 5432
+2020-03-09 12:17:41.154 EDT [22782] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-03-09 12:17:41.155 EDT [22782] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2020-03-09 12:17:41.166 EDT [22783] LOG:  database system was shut down at 2020-03-09 12:17:34 EDT
+2020-03-09 12:17:41.169 EDT [22782] LOG:  database system is ready to accept connections
+2020-03-09 12:21:23.056 EDT [22974] FATAL:  role "luxe_backend" does not exist
+2020-03-09 12:22:50.958 EDT [22999] FATAL:  database "luxe_backend_development" does not exist
+2020-03-09 12:23:55.495 EDT [23022] FATAL:  database "luxe_backend" does not exist
+2020-03-09 12:34:41.238 EDT [22782] LOG:  server process (PID 23253) was terminated by signal 9: Killed: 9
+2020-03-09 12:34:41.239 EDT [22782] LOG:  terminating any other active server processes
+2020-03-09 12:34:41.239 EDT [22787] WARNING:  terminating connection because of crash of another server process
+2020-03-09 12:34:41.239 EDT [22787] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2020-03-09 12:34:41.239 EDT [22787] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2020-03-09 12:34:41.244 EDT [22782] LOG:  all server processes terminated; reinitializing
+2020-03-09 12:34:41.256 EDT [22782] LOG:  startup process (PID 23254) was terminated by signal 9: Killed: 9
+2020-03-09 12:34:41.256 EDT [22782] LOG:  aborting startup due to startup process failure
+2020-03-09 12:34:41.261 EDT [22782] LOG:  database system is shut down

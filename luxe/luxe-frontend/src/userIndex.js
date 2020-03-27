@@ -118,7 +118,7 @@ function createUser(){
     })
     };
    fetch(users,config).then(res => res.json()).then(obj =>{
-    debugger
+
     user = new User(obj.data.attributes.id,obj.data.attributes.name,obj.data.attributes.username,obj.data.attributes.password)
     postTrip(user) });
     
@@ -145,6 +145,9 @@ function renderUser(obj){
     })
     homeDiv.className="Homepage"
     main.appendChild(homeDiv)
+}
+function fetchUserTrips(){
+
 }
 function userTrips(){
     debugger

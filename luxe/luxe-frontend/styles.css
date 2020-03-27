@@ -1,7 +1,19 @@
-div.locations { 
+/* div.locations { 
     box-sizing: border-box;
     background-color: lightgray;
     width: 500px
     
 
+} */
+div.sumBox {
+    position: absolute;
+    left:  30%;
+    width: 100px;
+    height: 130px;
+    border: 3px solid ;
+    padding: 10px;
+
+}
+div.main {
+    position: relative;
 }

@@ -29,18 +29,57 @@ document.addEventListener("DOMContentLoaded", function(){
 joinBtn.type = "button"
 joinBtn.value = "Join Luxe"
 joinBtn.className ="logIn"
+sumBox()
 main.after(joinBtn)
-
+sort()
 joinBtn.addEventListener("click",function(){
     let div = document.querySelector("div.locations")
     div.remove()
     logSign()
 })
 })
+function sumBox(){
+   let sumBox = document.createElement("div")
+   sumBox.className = "sumBox"
+       sumBox.innerHTML += `<div id="locAdd">
+                            </div>
+                           
+                            <p>+</p>
+                            <br>
+                            <div id="shipAdd"></div>
+                            =
+                            <div id="tripAdd"></div>
+                            `       
+   main.appendChild(sumBox)
+}
+
+function sort(){
+    let sortBtn = document.querySelector(".sort")
+
+    sortBtn.addEventListener("click",(e) => {
+    
+        fetch(locations).then(res=> res.json()).then(obj => {
+           
+            obj.data.sort(function(a, b) {
+                var nameA = a.attributes.name.toUpperCase(); // ignore upper and 
+                var nameB = b.attributes.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+              
+
+                return 0;
+              });
+              console.log(obj.data)        })
 
 
+})
+}
 // builds form holding cards of locations that can be chosen from
-
+let loc = null
 function buildLocation(obj){ 
     
    let div = document.createElement("div")
@@ -52,24 +91,34 @@ function buildLocation(obj){
         submitBtn.setAttribute("type","submit")
         submitBtn.setAttribute("value","Set Location")
         // form.setAttribute("action","/trips")
-        
+       
         // form.setAttribute("method","post")
     for(const location of obj){
 
-     new Location (location.attributes.name,location.attributes.price)
+     
      let html  = htmlLocation(location.attributes)
         form.innerHTML += html
     }
     form.appendChild(submitBtn)
+    let inputs = form.querySelectorAll('input[name="location"]')
+    inputs.forEach(input=>{
+        input.addEventListener("change",(e)=>{
+            e.preventDefault()
+             loc = new Location (e.target.id,e.target.value,e.target.dataset.price)
+            
+            loc.addLoc( )
+        })
+    })
+
     form.addEventListener("submit",function(e){
-        let inputs = e.target.querySelectorAll('input')
-        e.preventDefault()
+        e.preventDefault()     
         inputs.forEach(i => {
             if(i.checked == true){
                 choice1 = new Location(i.id,i.value,i.dataset["price"])
             }
         })
         div.remove()
+        
         getShips()
     })
     div.appendChild(form)
@@ -98,6 +147,15 @@ function buildShip(obj){
        
          form.innerHTML += htmlShip(ship.attributes)
         }
+    let shipInputs = form.querySelectorAll('input[name="ship"]') 
+    shipInputs.forEach(input =>{
+        input.addEventListener("change",(e)=>{
+            if(e.target.checked){
+                let shi = new Ship(e.target.id,e.target.value,e.target.dataset.price)
+                shi.addShip()
+            }
+        })
+    })
     let submitBtn = document.createElement("input")
     submitBtn.setAttribute("type","submit")
     submitBtn.setAttribute("value","Submit for Trip")
@@ -109,12 +167,13 @@ function buildShip(obj){
         let inputs = e.target.querySelectorAll('input')
         inputs.forEach(i => {
             if ( i.checked == true){
-                debugger
               choice2  = new Ship(i.id,i.value,i.dataset["price"])
                 div.remove()
                 nameForm()
             }})
-    })
+            let sb = document.querySelector(".sumBox")
+            sb.remove()
+        })
     }
     let price = null
     let check 
@@ -181,7 +240,7 @@ function buildShip(obj){
     let object = null
     let user = null
     function postTrip(user){
-        debugger
+        
         currentUser = user
         let config = {
             method: 'POST',
@@ -198,7 +257,6 @@ function buildShip(obj){
         }
         fetch('http://localhost:3000/trips',config).then(res => res.json())
         .then(obj =>  {
-            debugger
             currentTrip = new Trip (obj.data.attributes.id, obj.data.attributes.user, obj.data.attributes.ship,obj.data.attributes.location, obj.data.attributes.price)
             htmlTrip(currentTrip)}
         )
@@ -206,19 +264,17 @@ function buildShip(obj){
     let currentTrip = null
 
     function htmlTrip(obj){
-        debugger
-
+ 
         
-        let userObj = currrentTrip.user
-        let ship =currentTrip.ship
-        let location = currentTrip.location
+        let userObj = obj.user
+        let ship = obj.ship
+        let location = obj.location
         divHead.innerHTML = `<h1>Thank you, have fun</h1>`
-        debugger
        let  html = `<div name="purchase">
             <h2> Have fun ${userObj.name} at ${location.name} </h2>
             <br>
             <h3> Remember the name of your ship is ${ship.name}<h3>
-            <h3>Cost: $${price}</h3>
+            <h3>Cost: $${obj.price}</h3>
         </div>`
 
         main.innerHTML += html
@@ -233,11 +289,13 @@ function buildShip(obj){
             </div>`
     return html
     }
-class User{constructor(id,name1,username1,password1){
+
+    
+class User{constructor(id,name,username,password){
     this.id = id
-    this.name = name1
-    this.username = username1
-    this.password = password1
+    this.name = name
+    this.username = username
+    this.password = password
 }}
 
 class Ship { 
@@ -246,12 +304,25 @@ class Ship {
         this.price = price
         this.name = name
     }
+    addShip(){
+        let shipAdd = document.querySelector("#shipAdd")
+        shipAdd.innerText = this.price
+         let tripPrice = parseInt(loc.price) + parseInt(this.price)
+         let tripAdd = document.querySelector("#tripAdd")
+         tripAdd.innerText = tripPrice
+    }
 }
 class Location {
     constructor(id,name,price){
         this.id = id
         this.name = name
         this.price = price
+    }
+    addLoc(){  
+        let locAdd = document.querySelector("#locAdd")
+        locAdd.innerText =  this.price
+    
+    
     }
 }
 class Trip{
@@ -262,5 +333,6 @@ class Trip{
         this.price = price
         this.location = location
     }
+   
 }
 

@@ -19,7 +19,9 @@ function getShips(){
     .then(obj => buildShip(obj.data))
 }
 function getLocations(){
-    fetch(locations).then(res => res.json())
+    fetch(locations).then(res => 
+        res.json()
+    )
     .then(obj => buildLocation(obj.data))
 }
 
@@ -143,8 +145,12 @@ function buildShip(obj){
         form.setAttribute("action","trips")
         form.setAttribute("method","post")
         div.appendChild(form)
+        var a= { price: null}
     for(const ship of obj){
-       
+        if(a.price > ship.attributes.price || a.price === null){
+            a = ship.attributes
+        }
+   
          form.innerHTML += htmlShip(ship.attributes)
         }
     let shipInputs = form.querySelectorAll('input[name="ship"]') 
@@ -155,6 +161,23 @@ function buildShip(obj){
                 shi.addShip()
             }
         })
+    })
+  
+    let minBtn = document.createElement("button")
+    minBtn.innerText = "Best Value Ship"
+    form.appendChild(minBtn)
+    minBtn.addEventListener("click",()=>{ 
+        let shipInput
+        let clipper
+        document.querySelectorAll("input").forEach(int => {
+            if(a.name === int.value){
+                shipInput = int
+                clipper = new Ship(shipInput.id,shipInput.value,shipInput.dataset["price"])
+            }
+        })
+        clipper.addShip()
+        shipInput.checked = true
+
     })
     let submitBtn = document.createElement("input")
     submitBtn.setAttribute("type","submit")

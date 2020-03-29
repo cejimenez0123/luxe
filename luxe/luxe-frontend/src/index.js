@@ -165,7 +165,7 @@ function buildShip(obj){
   
     let minBtn = document.createElement("button")
     minBtn.innerText = "Best Value Ship"
-    form.appendChild(minBtn)
+    main.appendChild(minBtn)
     minBtn.addEventListener("click",()=>{ 
         let shipInput
         let clipper

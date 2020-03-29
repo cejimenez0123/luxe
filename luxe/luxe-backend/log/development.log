@@ -10638,3 +10638,67 @@ Processing by ShipsController#index as */*
 Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.5ms | Allocations: 2007)
 
 
+Started GET "/locations" for ::1 at 2020-03-29 15:28:41 -0400
+Processing by LocationsController#index as */*
+[active_model_serializers]   [1m[36mLocation Load (1.7ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+[active_model_serializers]   ↳ app/controllers/locations_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with LocationSerializer (6.88ms)
+Completed 200 OK in 10ms (Views: 6.4ms | ActiveRecord: 1.7ms | Allocations: 2005)
+
+
+Started GET "/ships" for ::1 at 2020-03-29 15:28:44 -0400
+Processing by ShipsController#index as */*
+[active_model_serializers]   [1m[36mShip Load (0.5ms)[0m  [1m[34mSELECT "ships".* FROM "ships"[0m
+[active_model_serializers]   ↳ app/controllers/ships_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ShipSerializer (3.46ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.5ms | Allocations: 2007)
+
+
+Started GET "/locations" for ::1 at 2020-03-29 15:28:46 -0400
+Processing by LocationsController#index as */*
+[active_model_serializers]   [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+[active_model_serializers]   ↳ app/controllers/locations_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with LocationSerializer (3.94ms)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.7ms | Allocations: 2005)
+
+
+Started GET "/ships" for ::1 at 2020-03-29 15:28:48 -0400
+Processing by ShipsController#index as */*
+[active_model_serializers]   [1m[36mShip Load (0.6ms)[0m  [1m[34mSELECT "ships".* FROM "ships"[0m
+[active_model_serializers]   ↳ app/controllers/ships_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ShipSerializer (40.81ms)
+Completed 200 OK in 42ms (Views: 40.7ms | ActiveRecord: 0.6ms | Allocations: 2010)
+
+
+Started GET "/locations" for ::1 at 2020-03-29 15:29:40 -0400
+Processing by LocationsController#index as */*
+[active_model_serializers]   [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+[active_model_serializers]   ↳ app/controllers/locations_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with LocationSerializer (2.06ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 2005)
+
+
+Started GET "/ships" for ::1 at 2020-03-29 15:29:42 -0400
+Processing by ShipsController#index as */*
+[active_model_serializers]   [1m[36mShip Load (0.6ms)[0m  [1m[34mSELECT "ships".* FROM "ships"[0m
+[active_model_serializers]   ↳ app/controllers/ships_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ShipSerializer (3.08ms)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.6ms | Allocations: 2007)
+
+
+Started GET "/locations" for ::1 at 2020-03-29 15:30:49 -0400
+Processing by LocationsController#index as */*
+[active_model_serializers]   [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+[active_model_serializers]   ↳ app/controllers/locations_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with LocationSerializer (2.64ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.6ms | Allocations: 2005)
+
+
+Started GET "/ships" for ::1 at 2020-03-29 15:30:52 -0400
+Processing by ShipsController#index as */*
+[active_model_serializers]   [1m[36mShip Load (0.5ms)[0m  [1m[34mSELECT "ships".* FROM "ships"[0m
+[active_model_serializers]   ↳ app/controllers/ships_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ShipSerializer (2.72ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.5ms | Allocations: 2007)
+
+
